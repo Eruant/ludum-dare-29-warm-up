@@ -7,7 +7,7 @@ var preload = function () {
   this.preloader.anchor.setTo(0.5, 0.5);
   this.load.setPreloadSprite(this.preloader);
 
-  this.load.image('menu_background', 'assets/menu_background.png');
+  this.load.image('starfield', 'assets/starfield.png');
 };
 
 var create = function () {
@@ -15,11 +15,11 @@ var create = function () {
     .to({
       alpha: 0
     }, 1000, Phaser.Easing.Linear.None, true);
-  tween.onComplete(this.startGame, this);
+  tween.onComplete.add(this.startGame, this);
 };
 
 var startGame = function () {
-  this.state.start('mainMenu', true, false);
+  this.game.state.start('mainMenu', true, false);
 };
 
 module.exports = {

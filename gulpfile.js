@@ -27,7 +27,8 @@ var cfg = {
       'src/assets/*.png',
       'src/assets/*.jpg'
     ],
-    dest: 'bin/assets'
+    dest: 'bin/assets',
+    watch: 'src/assets/*'
   },
   server: {
     src: [
@@ -55,9 +56,12 @@ gulp.task('script-hints', function () {
 
 gulp.task('script-test', ['script-hints'], function () {
   return gulp.src(cfg.test)
-    .pipe(mocha())
+    .pipe(mocha({
+      reporter: 'nyan'
+    }))
     .on('error', function () {
       console.error('[MOCHA] encountered an error');
+      this.emit('end');
     });
 });
 
@@ -81,18 +85,22 @@ gulp.task('assets', function () {
     .pipe(gulp.dest(cfg.assets.dest));
 });
 
-gulp.task('watch', ['watch-scripts', 'watch-markup']);
+gulp.task('watch', ['watch-tests', 'watch-scripts', 'watch-markup', 'watch-assets']);
+
+gulp.task('watch-tests', function () {
+  return gulp.watch(cfg.test, ['script-test']);
+});
 
 gulp.task('watch-scripts', function () {
-  return gulp.watch(cfg.js.watch, function () {
-    gulp.run('scripts');
-  });
+  return gulp.watch(cfg.js.watch, ['scripts']);
 });
 
 gulp.task('watch-markup', function () {
-  return gulp.watch(cfg.markup.watch, function () {
-    gulp.run('markup');
-  });
+  return gulp.watch(cfg.markup.watch, ['markup']);
+});
+
+gulp.task('watch-assets', function () {
+  return gulp.watch(cfg.assets.watch, ['assets']);
 });
 
 gulp.task('server', function () {
