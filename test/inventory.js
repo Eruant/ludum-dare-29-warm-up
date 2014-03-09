@@ -3,15 +3,15 @@
 describe('Inventory', function () {
 
   var should = require('should'),
-    Inventory = require('../src/js/classes/Inventory'),
-
-    inventory = new Inventory();
+    Inventory = require('../src/js/classes/Inventory');
 
   it('should exist', function () {
+    var inventory = new Inventory();
     should.exist(inventory);
   });
 
   describe('containers', function () {
+    var inventory = new Inventory();
     it('should exist', function () {
       should.exist(inventory.containers);
     });
@@ -22,6 +22,7 @@ describe('Inventory', function () {
   });
 
   describe('add container', function () {
+    var inventory = new Inventory();
 
     it('should exist', function () {
       should.exist(inventory.addContainer);
@@ -44,6 +45,7 @@ describe('Inventory', function () {
   });
 
   describe('remove container', function () {
+    var inventory = new Inventory();
 
     it('should exist', function () {
       should.exist(inventory.removeContainer);
@@ -59,20 +61,18 @@ describe('Inventory', function () {
     });
 
     it('should decrease the legth of containers by one', function () {
-      var len;
+      inventory.addContainer('itemOne');
+      should(inventory.containers).lengthOf(1);
 
-      inventory.addContainer('test');
+      inventory.addContainer('itemTwo');
+      should(inventory.containers).lengthOf(2);
 
-      len = inventory.containers.length;
-      inventory.removeContainer('test');
-      should(inventory.containers.length).equal(len - 1 || 0);
+      inventory.removeContainer('itemOne');
+      should(inventory.containers).lengthOf(1);
+
+      inventory.removeContainer('itemTwo');
+      should(inventory.containers).lengthOf(0);
     });
-  });
-
-  describe('add item', function () {
-  });
-
-  describe('remove item', function () {
   });
 
 });

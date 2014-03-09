@@ -6,11 +6,14 @@ var Inventory = function () {
   this.containers = [];
 };
 
-Inventory.prototype.addContainer = function (name, type) {
-  if (!name) {
+Inventory.prototype.addContainer = function (id, type) {
+  if (!id) {
     return;
   }
-  this.containers.push(new Container(name, type));
+  this.containers.push({
+    id: id,
+    data: new Container(type)
+  });
 };
 
 Inventory.prototype.removeContainer = function (id) {
@@ -18,12 +21,15 @@ Inventory.prototype.removeContainer = function (id) {
     return;
   }
 
-  /*
-  var i = this.containers.indexOf(id);
-  if (i !== -1) {
-    this.containers.splice(id, 1);
+  var returnContainers = [];
+
+  for (var i = 0, iL = this.containers.length; i < iL; i++) {
+    if (this.containers[i].id !== id) {
+      returnContainers.push(this.containers[i]);
+    }
   }
-  */
+
+  this.containers = returnContainers;
 };
 
 module.exports = Inventory;
