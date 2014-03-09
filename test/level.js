@@ -3,7 +3,7 @@
 describe('Level', function () {
 
   var should = require('should'),
-    level = require('../src/js/scenes/game.js');
+    level = require('../src/js/scenes/level.js');
 
   describe('module', function () {
     it('should exist', function () {
