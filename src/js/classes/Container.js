@@ -33,4 +33,18 @@ Container.prototype.addValue = function (quantity) {
   return overspill;
 };
 
+Container.prototype.removeValue = function (quantity) {
+
+  var currentValue = this.value;
+
+  this.value -= quantity;
+
+  if (this.value < 0) {
+    this.value = 0;
+    return currentValue;
+  }
+
+  return this.value;
+};
+
 module.exports = Container;

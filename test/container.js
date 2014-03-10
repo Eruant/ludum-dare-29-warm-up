@@ -83,7 +83,7 @@ describe('Container', function () {
       var container = new Container();
       container.setMaxValue(10);
       container.addValue(12);
-      should(container).equal(10);
+      should(container.value).equal(10);
     });
   });
 
