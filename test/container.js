@@ -11,6 +11,8 @@ describe('Container', function () {
       var container = new Container();
       should(container).not.be.an.instanceOf(Function);
       should(container.id).equal(undefined);
+      // TODO change this
+      //should(container).throwError(); // need to check this
     });
 
     it('should have default type of box', function () {
@@ -41,14 +43,30 @@ describe('Container', function () {
   });
 
   describe('setMaxValue', function () {
-    var container = new Container();
-    container.setMaxValue(10);
-    should(container.maxValue).equal(10);
+
+    it('should change the maxValue', function () {
+      var container = new Container();
+      container.setMaxValue(10);
+      should(container.maxValue).equal(10);
+
+      container.setMaxValue(20);
+      should(container.maxValue).equal(20);
+    });
+
+    it('should return the over splill if reducing the value to more than is allowed', function () {
+      var container, overspill;
+      container = new Container();
+      container.setMaxValue(20);
+      container.addValue(15);
+      overspill = container.setMaxValue(10);
+      should(overspill).equal(5);
+    });
   });
 
   describe('addValue', function () {
     it('should be able to add content', function () {
       var container = new Container();
+      container.setMaxValue(20);
       container.addValue(12);
       should(container.value).equal(12);
     });
@@ -69,13 +87,33 @@ describe('Container', function () {
     });
   });
 
-  it('should reduce the content when taking out', function () {
-  });
+  describe('removeValue', function () {
 
-  it('should not take out more than exists in the first place', function () {
-  });
+    it('should reduce the content when taking out', function () {
+      var container = new Container();
+      container.setMaxValue(10);
+      container.addValue(8);
+      container.removeValue(6);
+      should(container.value).equal(2);
+    });
 
-  it('should only give you what is available', function () {
+    it('should not take out more than exists in the first place', function () {
+      var container = new Container();
+      container.setMaxValue(10);
+      container.addValue(8);
+      container.removeValue(10);
+      should(container.value).equal(0);
+    });
+
+    it('should only give you what is available', function () {
+      var container, returnValue;
+      container = new Container();
+      container.setMaxValue(10);
+      container.addValue(8);
+      returnValue = container.removeValue(10);
+      should(returnValue).equal(8);
+    });
+
   });
 
 });
