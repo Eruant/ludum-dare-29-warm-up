@@ -1,6 +1,13 @@
 /*globals module*/
 
 var Container = function (type) {
+  
+  if (type) {
+    if (['box', 'gas', 'liquid'].indexOf(type) === -1) {
+      throw new Error('Container type must equal "box", "gas" or "liquid".');
+    }
+  }
+
   this.type = type || 'box';
   this.maxValue = 10;
   this.value = 0;

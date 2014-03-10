@@ -7,14 +7,6 @@ describe('Container', function () {
 
   describe('constructor', function () {
 
-    it('should not be defined without an id', function () {
-      var container = new Container();
-      should(container).not.be.an.instanceOf(Function);
-      should(container.id).equal(undefined);
-      // TODO change this
-      //should(container).throwError(); // need to check this
-    });
-
     it('should have default type of box', function () {
       var container = new Container();
       should(container.type).equal('box');
@@ -23,6 +15,12 @@ describe('Container', function () {
     it('should have type defined', function () {
       var container = new Container('gas');
       should(container.type).equal('gas');
+    });
+
+    it('should only accept "box", "gas", "liquid"', function () {
+      (function () {
+        var container = new Container('test');
+      }).should.throw();
     });
 
     it('should have a max storage capacity set', function () {
