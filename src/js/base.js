@@ -3,6 +3,8 @@
  * This is the root file, which kicks off the game
  *
  * @author Matt Game <matt@littleball.co.uk>
+ *
+ * @ignore
  */
 
 /*globals require*/

@@ -1,3 +1,10 @@
+/**
+ * @class Container
+ * An object to hold either a solid, liquid or gas resource
+ *
+ * @author Matt Gale <matt@littleball.co.uk>
+ */
+
 /*globals module*/
 
 var Container = function (type) {
@@ -13,6 +20,9 @@ var Container = function (type) {
   this.value = 0;
 };
 
+/**
+ * @method setMaxValue
+ */
 Container.prototype.setMaxValue = function (value) {
 
   var overspill = 0;

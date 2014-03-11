@@ -1,16 +1,18 @@
 /**
- * @class Container
+ * @class Inventory
  * An object for storing resources
  * 
  * @author Matt Gale <matt@littleball.co.uk>
- * @requires Container
  */
 /*globals module, require*/
 
+/**
+ * @ignore
+ */
 var Container = require('./Container');
 
 /**
- * @contructor
+ * @constructor
  */
 var Inventory = function () {
   this.containers = [];
