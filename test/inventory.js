@@ -56,8 +56,9 @@ describe('Inventory', function () {
     });
     
     it('requires an id to be set', function () {
-      var result = inventory.removeContainer();
-      should(result).equal(undefined);
+      should(function () {
+        var result = inventory.removeContainer();
+      }).throw();
     });
 
     it('should decrease the legth of containers by one', function () {
