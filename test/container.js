@@ -7,34 +7,40 @@ describe('Container', function () {
 
   describe('constructor', function () {
 
-    it('should have default type of box', function () {
-      var container = new Container();
-      should(container.type).equal('box');
+    it('should have a type', function () {
+      should(function () {
+        var container = new Container();
+      }).throw();
+    });
+
+    it('should have default form of solid', function () {
+      var container = new Container('mud');
+      should(container.form).equal('solid');
     });
 
     it('should have type defined', function () {
-      var container = new Container('gas');
-      should(container.type).equal('gas');
+      var container = new Container('oxygen', 'gas');
+      should(container.form).equal('gas');
     });
 
-    it('should only accept "box", "gas", "liquid"', function () {
+    it('should only accept a form of "box", "gas", "liquid"', function () {
       (function () {
-        var container = new Container('test');
+        var container = new Container('mud', 'test');
       }).should.throw();
     });
 
     it('should have a max storage capacity set', function () {
-      var container = new Container();
+      var container = new Container('mud');
       should(container.maxValue).be.above(0).and.an.instanceOf(Number);
     });
 
     it('should have a quanitity of storage set', function () {
-      var container = new Container();
+      var container = new Container('mud');
       should(container.value).within(0, container.maxValue);
     });
 
     it('should default the value to 0', function () {
-      var container = new Container();
+      var container = new Container('mud');
       should(container.value).equal(0);
     });
 
@@ -43,7 +49,7 @@ describe('Container', function () {
   describe('setMaxValue', function () {
 
     it('should change the maxValue', function () {
-      var container = new Container();
+      var container = new Container('mud');
       container.setMaxValue(10);
       should(container.maxValue).equal(10);
 
@@ -53,7 +59,7 @@ describe('Container', function () {
 
     it('should return the over splill if reducing the value to more than is allowed', function () {
       var container, overspill;
-      container = new Container();
+      container = new Container('mud');
       container.setMaxValue(20);
       container.addValue(15);
       overspill = container.setMaxValue(10);
@@ -63,7 +69,7 @@ describe('Container', function () {
 
   describe('addValue', function () {
     it('should be able to add content', function () {
-      var container = new Container();
+      var container = new Container('mud');
       container.setMaxValue(20);
       container.addValue(12);
       should(container.value).equal(12);
@@ -71,14 +77,14 @@ describe('Container', function () {
 
     it('should return to over spill, when full of content', function () {
       var container, spill;
-      container = new Container();
+      container = new Container('mud');
       container.setMaxValue(10);
       spill = container.addValue(12);
       should(spill).equal(2);
     });
 
     it('should not over fill', function () {
-      var container = new Container();
+      var container = new Container('mud');
       container.setMaxValue(10);
       container.addValue(12);
       should(container.value).equal(10);
@@ -88,7 +94,7 @@ describe('Container', function () {
   describe('removeValue', function () {
 
     it('should reduce the content when taking out', function () {
-      var container = new Container();
+      var container = new Container('mud');
       container.setMaxValue(10);
       container.addValue(8);
       container.removeValue(6);
@@ -96,7 +102,7 @@ describe('Container', function () {
     });
 
     it('should not take out more than exists in the first place', function () {
-      var container = new Container();
+      var container = new Container('mud');
       container.setMaxValue(10);
       container.addValue(8);
       container.removeValue(10);
@@ -105,7 +111,7 @@ describe('Container', function () {
 
     it('should only give you what is available', function () {
       var container, returnValue;
-      container = new Container();
+      container = new Container('mud');
       container.setMaxValue(10);
       container.addValue(8);
       returnValue = container.removeValue(10);

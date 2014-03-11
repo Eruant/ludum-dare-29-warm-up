@@ -1,17 +1,12 @@
+/*globals module, require*/
+
+var Container = require('./Container');
+
 /**
  * @class Inventory
  * An object for storing resources
  * 
  * @author Matt Gale <matt@littleball.co.uk>
- */
-/*globals module, require*/
-
-/**
- * @ignore
- */
-var Container = require('./Container');
-
-/**
  * @constructor
  */
 var Inventory = function () {
@@ -25,13 +20,13 @@ var Inventory = function () {
  * @param {String} id - a reference to the container
  * @param {String} type - the type of container to create
  */
-Inventory.prototype.addContainer = function (id, type) {
+Inventory.prototype.addContainer = function (id, type, form) {
   if (!id) {
-    return;
+    throw new Error('Inventory requires an id to be set');
   }
   this.containers.push({
     id: id,
-    data: new Container(type)
+    data: new Container(type, form)
   });
 };
 

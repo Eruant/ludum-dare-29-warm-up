@@ -23,23 +23,20 @@ describe('Inventory', function () {
 
   describe('add container', function () {
     var inventory = new Inventory();
-
-    it('should exist', function () {
-      should.exist(inventory.addContainer);
-    });
-
-    it('should be a function', function () {
+    
+    it('should exist, and be a function', function () {
       should(inventory.addContainer).be.an.instanceOf(Function);
     });
 
-    it('should require a name to be set', function () {
-      var result = inventory.addContainer();
-      should(result).equal(undefined);
+    it('should require an id to be set', function () {
+      should(function () {
+        inventory.addContainer();
+      }).throw();
     });
 
     it('should increase the length of containers by one', function () {
       var len = inventory.containers.length;
-      inventory.addContainer('test');
+      inventory.addContainer('mud', 'solid');
       should(inventory.containers.length).equal(len + 1);
     });
   });
@@ -61,11 +58,11 @@ describe('Inventory', function () {
       }).throw();
     });
 
-    it('should decrease the legth of containers by one', function () {
-      inventory.addContainer('itemOne');
+    it('should decrease the length of containers by one', function () {
+      inventory.addContainer('itemOne', 'mud');
       should(inventory.containers).lengthOf(1);
 
-      inventory.addContainer('itemTwo');
+      inventory.addContainer('itemTwo', 'mud');
       should(inventory.containers).lengthOf(2);
 
       inventory.removeContainer('itemOne');
