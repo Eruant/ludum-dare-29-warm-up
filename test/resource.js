@@ -46,9 +46,12 @@ describe('Resource', function () {
   });
 
   describe('addValue', function () {
-    var resource = new Resource('water', 'liquid');
-    resource.addValue(10);
-    should(resource.value).equal(11);
+
+    it('should add the value to the value', function () {
+      var resource = new Resource('water', 'liquid');
+      resource.addValue(10);
+      should(resource.value).equal(11);
+    });
   });
 
   describe('removeValue', function () {
