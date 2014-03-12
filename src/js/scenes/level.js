@@ -1,5 +1,3 @@
-/*globals module*/
-
 var game = {
   create: function () {
   },

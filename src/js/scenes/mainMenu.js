@@ -1,5 +1,3 @@
-/*globals module, require*/
-
 var Phaser = require('phaser/phaser');
 
 var menu = {

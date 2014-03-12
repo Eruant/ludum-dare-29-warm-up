@@ -1,5 +1,3 @@
-/*globals module, require*/
-
 var Container = require('./Container');
 
 /**

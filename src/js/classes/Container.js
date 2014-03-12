@@ -1,5 +1,3 @@
-/*globals module*/
-
 /**
  * @class Container
  * An object to hold either a solid, liquid or gas resource

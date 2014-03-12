@@ -7,8 +7,6 @@
  * @ignore
  */
 
-/*globals require*/
-
 var Phaser = require('phaser/phaser'),
     boot = require('./scenes/boot'),
     preloader = require('./scenes/preloader'),

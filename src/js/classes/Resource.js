@@ -1,5 +1,3 @@
-/*globals module*/
-
 function Resource() {
 }
 

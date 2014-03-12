@@ -1,5 +1,3 @@
-/*globals module*/
-
 var preload = function () {
   this.load.image('preloader', 'assets/preloader.png');
 };

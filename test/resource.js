@@ -46,13 +46,21 @@ describe('Resource', function () {
   });
 
   describe('addValue', function () {
-
-    // TODO
+    var resource = new Resource('water', 'liquid');
+    resource.addValue(10);
+    should(resource.value).equal(11);
   });
 
   describe('removeValue', function () {
 
-    // TODO
+    it('should return the value specified or however many is left', function () {
+      var resource = new Resource('water', 'liquid');
+      resource.addValue(9);
+      var resourceTaken = resource.removeValue(6);
+      should(resourceTaken).equal(6);
+      var anotherResourceTaken = resource.removeValue(20);
+      should(anotherResourceTaken).equal(4);
+    });
 
     it('should not be less than 1', function () {
       var resource = new Resource('water', 'liquid');
@@ -63,11 +71,3 @@ describe('Resource', function () {
   });
 
 });
-
-/*
-
-   have a type
-   have a form [solid, liquid, gas]
-   have a quantity / value?
-
-*/
