@@ -11,12 +11,11 @@
     "gulp-browserify": "~0.5.0",
     "gulp-imagemin": "~0.1.5",
     "gulp-mocha": "~0.4.1",
-    "should": "~3.1.3",
-    "mocha": "~1.17.1"
+    "should": "~3.1.3"
   },
   "scripts": {
     "install": "napa",
-    "test": "make test"
+    "test": "node gulpfile.js && mocha --reporter spec"
   },
   "napa": {
     "phaser": "nDmitry/bower-phaser"
