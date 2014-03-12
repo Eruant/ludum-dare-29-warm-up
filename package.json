@@ -15,7 +15,8 @@
     "mocha": "~1.17.1"
   },
   "scripts": {
-    "install": "napa"
+    "install": "napa",
+    "test": "make test"
   },
   "napa": {
     "phaser": "nDmitry/bower-phaser"
