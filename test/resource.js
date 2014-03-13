@@ -10,6 +10,7 @@ describe('Resource', function () {
     it('should throw error parameters are not set', function () {
       should(function () {
         var resource = new Resource();
+        return resource;
       }).throw();
     });
 
@@ -23,6 +24,11 @@ describe('Resource', function () {
       should(resource.form).equal('solid');
     });
 
+    it('should take a new value', function () {
+      var resource = new Resource('water', 'liquid', 10);
+      should(resource.value).equal(10);
+    });
+
     it('should have take the form sent in', function () {
       var resource = new Resource('water', 'liquid');
       should(resource.form).equal('liquid');
@@ -31,6 +37,7 @@ describe('Resource', function () {
     it('should only take a form of [solid, liquid, gas]', function () {
       should(function () {
         var resource = new Resource('water', 'solidish');
+        return resource;
       }).throw();
     });
 
@@ -56,9 +63,16 @@ describe('Resource', function () {
 
   describe('removeValue', function () {
 
+    it('should expect a value to be removed', function () {
+      should(function () {
+        var resource = new Resource('water', 'liquid');
+        resource.removeValue();
+      }).throw();
+
+    });
+
     it('should return the value specified or however many is left', function () {
-      var resource = new Resource('water', 'liquid');
-      resource.addValue(9);
+      var resource = new Resource('water', 'liquid', 10);
       var resourceTaken = resource.removeValue(6);
       should(resourceTaken).equal(6);
       var anotherResourceTaken = resource.removeValue(20);
@@ -68,7 +82,7 @@ describe('Resource', function () {
     it('should not be less than 1', function () {
       var resource = new Resource('water', 'liquid');
       resource.removeValue(2);
-      should(resource.value).be.above(0);
+      should(resource.value).be.above(-1);
     });
 
   });
