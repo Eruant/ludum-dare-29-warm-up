@@ -16,6 +16,14 @@ function Resource(type, form, value) {
 
 }
 
+Resource.prototype.setValue = function (value) {
+  if (!value) {
+    throw new Error('Resource setValue expects a value to be set');
+  }
+
+  this.value = value;
+};
+
 Resource.prototype.addValue = function (value) {
   this.value += value;
 };

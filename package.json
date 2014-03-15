@@ -16,7 +16,7 @@
   },
   "scripts": {
     "install": "napa",
-    "test": "node gulpfile.js && mocha --reporter spec"
+    "test": "node gulpfile.js && mocha --reporter spec --no-colors"
   },
   "napa": {
     "phaser": "nDmitry/bower-phaser"

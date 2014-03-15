@@ -52,6 +52,22 @@ describe('Resource', function () {
     });
   });
 
+  describe('setValue', function () {
+
+    it('should throw an error if no value is set', function () {
+      should(function () {
+        var resource = new Resource('dirt');
+        resource.setValue();
+      }).throw();
+    });
+
+    it('should change the value of the resource', function () {
+      var resource = new Resource('water', 'liquid');
+      resource.setValue(5);
+      should(resource.value).equal(5);
+    });
+  });
+
   describe('addValue', function () {
 
     it('should add the value to the value', function () {
