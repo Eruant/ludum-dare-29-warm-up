@@ -16,6 +16,7 @@
   },
   "scripts": {
     "install": "napa",
+    "build": "gulp compile",
     "test": "node gulpfile.js && mocha --reporter spec --no-colors"
   },
   "napa": {
